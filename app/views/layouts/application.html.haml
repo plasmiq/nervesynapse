@@ -1,12 +1,12 @@
 !!!
-%body{:id => "body-#{controller_name}", :class => "body-#{controller_name}-#{action_name}" }
+%body{:id => "body_#{controller_name}", :class => "body_#{controller_name}_#{action_name}" }
   %head
     %title Nerve Synapse
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tag
-  %h1#logo
-    = link_to 'Nerve Synapse', root_path
   #wrapper
+    %h1#logo
+      = link_to 'Nerve Synapse', root_path
     #container
       = yield

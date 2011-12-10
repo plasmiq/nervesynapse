@@ -2,12 +2,21 @@ a {
   text-decoration: none;
   color: #fff;
 }
+
+.button {
+  display: block;
+  height: 0px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 body {
-  background: url('body_bg.png');
+  background: url('body_bg.jpg');
   h1#logo {
     width: 120px;
     height: 24px;
-    margin: auto;
+    margin: 0px auto 0 auto;
+    padding-top: 16px;
     a {
       display: block;
       width: 120px;

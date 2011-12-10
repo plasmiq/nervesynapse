@@ -1,3 +1,35 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#body_welcome {
+  #wrapper {
+    overflow: hidden;
+    .play_content {
+      width: 980px;
+      position: relative;
+      margin: auto;
+      .play_instructions {
+        width: 626px;
+        height: 161px;
+        background: url(instructions.png) no-repeat;
+        margin: 200px auto 55px auto;
+      }
+      .play {
+        width: 44px;
+        height: 0px;
+        padding-top: 55px;
+        background: url(play.png) no-repeat;
+        margin: auto;
+      }
+      .splay {
+        position: absolute;
+        background: url(splay.png) no-repeat;
+        width: 1424px;
+        height: 1116px;
+        top: -241px;
+        left: -229px;
+        z-index: -1000;
+      }
+    }
+  }
+}
