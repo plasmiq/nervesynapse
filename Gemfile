@@ -18,3 +18,8 @@ end
 group :development do
   gem 'mongrel'
 end
+
+group :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+end

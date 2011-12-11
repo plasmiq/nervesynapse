@@ -1,5 +1,7 @@
 NerveSynapse::Application.routes.draw do
   root :to => 'welcome#index'
+  match 'compass' => 'compass#index'
+  match 'compass/get_image' => 'compass#get_image'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
