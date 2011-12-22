@@ -28,6 +28,10 @@ getImage = (prevImg) ->
         $newImg.hide()
         $image.append($newImg)
         $loader.fadeOut()
+
+        marginTop = ((window.innerHeight / 2) - ($newImg.height() / 2)) - 40
+        $newImg.css('margin-top', marginTop + 'px')
+
         if prevImg
           prevImg.fadeOut()
           $newImg.delay(500).fadeIn()
