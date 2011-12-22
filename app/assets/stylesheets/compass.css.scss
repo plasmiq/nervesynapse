@@ -6,6 +6,11 @@
     img {
       display: block;
       margin: auto;
+      cursor: pointer;
     }
+  }
+  .ajax_loader {
+    width: 48px;
+    margin: 20px auto auto auto;
   }
 }

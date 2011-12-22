@@ -15,6 +15,6 @@ role :db,  '178.63.75.143', :primary => true
 
 desc 'Link in the development database.yml'
 task :after_update_code do
-  files = %w(database.yml)
+  files = %w(database.yml application.yml)
   files.each {|file| run "ln -nfs #{shared_path}/etc/#{file} #{release_path}/config/#{file}" }
 end

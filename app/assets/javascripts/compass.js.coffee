@@ -8,10 +8,14 @@ jQuery ->
 
 travel = ($img) ->
   $img.click ->
+    $loader = $('.ajax_loader')
+    $loader.fadeIn()
+    $img.unbind 'click'
     getImage($img)
 
 getImage = (prevImg) ->
   $image = $('#body_compass .image')
+  $loader = $('.ajax_loader')
   $.ajax
     type: 'get'
     url: '/compass/get_image'
@@ -23,6 +27,7 @@ getImage = (prevImg) ->
         travel($newImg)
         $newImg.hide()
         $image.append($newImg)
+        $loader.fadeOut()
         if prevImg
           prevImg.fadeOut()
           $newImg.delay(500).fadeIn()
