@@ -1,8 +1,10 @@
 class Compass
-  def self.get_image
-    #file_list = Dir.glob('app/assets/images/test_images/*.{png,jpg}')
-    #file_list[rand(file_list.size)].gsub('app/assets/images', 'assets')
-    #"http://beta.metabrane.co#{Net::HTTP.get 'beta.metabrane.co', '/resonance_core/bind'}"
-    ResonanceCore.new.get(:bind)
+  def self.get_image(params)
+    resonance_core = ResonanceCore
+    resonance_core.get(
+      :bind,
+      :click_area => (params[:click_area] || nil),
+      :clicked_at => Time.now.to_i
+    )
   end
 end
