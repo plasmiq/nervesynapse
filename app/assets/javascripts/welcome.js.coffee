@@ -15,13 +15,13 @@ jQuery ->
     $infoLink.click ->
       if $footer.hasClass('open')
         $footer.animate {
-          bottom: '-=560'
+          bottom: '-560px'
         }, 500, ->
           $footer.removeClass('open')
         $footerContent.fadeOut(500)
       else
         $footer.animate {
-          bottom: '+=560'
+          bottom: '0'
         }, 500, ->
           $footer.addClass('open')
         $footerContent.fadeIn(1000)
