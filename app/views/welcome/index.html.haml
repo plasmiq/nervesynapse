@@ -1,4 +1,69 @@
 .play_content
   .splay
-  .play_instructions
+  .instructions
+    click the first area you notice on each visual.
+  .tip
+    be as rapid as required, this is how you travel.
   = link_to 'play', compass_path, :class => 'play button'
+= content_for :body_bottom do
+  #footer
+    = link_to 'info', '#', :class => 'button info'
+    .content
+      .title
+        WHAT IS NERVE SYNAPSE?
+      %p
+        %span.pink nerve synapse
+        is a fun way to
+        %span.turquoise travel
+        along strings of
+        %span.turquoise content
+        by simply clicking an image’s area of
+        %span.turquoise novelty
+        within
+        %span.pink 3 seconds
+        of it appearing.
+      %br
+      %p
+        %span.turquoise touches
+        you
+        %span.turquoise create
+        on an image,
+        %span.turquoise influence
+        the relationships of imagery that
+        %span.turquoise flows
+        forward for you
+        %span.turquoise explore
+        and
+        %span.turquoise navigate
+        , making this a responsive and addictive ride down the
+        %span.turquoise rabbit hole
+        of discovery and visual feasting.
+      %p
+        %span.pink how many images can you click, connect and navigate through?
+      %br
+      %p
+        %span.pink nerve synapse
+        utilises the ever growing
+        %span.turquoise living content
+        found on
+        %span.pink metabrane
+        (a visual communication engine) where a community of
+        %span.turquoise personas
+        are building
+        %span.turquoise narrative environments
+        for
+        %span.turquoise idea discovery
+        and
+        %span.turquoise creative interplay
+        of meanings.
+        %span.pink you are helping build worlds as you play.
+      .logo_hr_title
+        .bg
+        .text PROUDLY BROUGHT TO YOU BY
+        .bg
+        .clear
+      .logos
+        = link_to 'plasmiq', 'http://plasmiq.com', :class => 'button plasmiq', :target => '_blank'
+        = link_to 'metabrnae', 'http://metabrane.co', :class => 'button metabrane', :target => '_blank'
+        = link_to 'supermuncher', 'http://supermuncher.com', :class => 'button supermuncher', :target => '_blank'
+        .clear
