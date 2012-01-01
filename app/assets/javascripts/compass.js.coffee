@@ -33,6 +33,7 @@ getImage = (prevImg, e) ->
 
         marginTop = ((window.innerHeight / 2) - ($newImg.height() / 2)) - 40
         $newImg.css('margin-top', marginTop + 'px')
+        $newImg.css('display', 'block')
 
         if prevImg
           prevImg.fadeOut()
