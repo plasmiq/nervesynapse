@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #body_compass {
+  #timer {
+    width: 21px;
+    background-color: #f5002e;
+    margin: auto;
+    height: 10px;
+  }
   .image {
     img {
       display: block;

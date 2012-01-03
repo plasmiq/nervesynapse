@@ -1,16 +1,22 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$timer = ''
 jQuery ->
+  $timer = $('#timer')
   $image = $('#body_compass .image')
   if $image.length > 0
     getImage(false)
 
+ran_out_of_time = true
+
 travel = ($img) ->
   $img.click (e)->
+    $img.unbind 'click'
+    ran_out_of_time = false
+    $timer.stop()
     $loader = $('.ajax_loader')
     $loader.fadeIn()
-    $img.unbind 'click'
     getImage($img, e)
 
 getImage = (prevImg, e) ->
@@ -25,21 +31,30 @@ getImage = (prevImg, e) ->
     success: (data) ->
       newImg = new Image()
       $newImg = $(newImg)
+      $newImg.hide()
       newImg.onload = ->
+        #Bind click to new image
         travel($newImg)
-        $newImg.hide()
-        $image.append($newImg)
-        $loader.fadeOut()
 
+        $image.append($newImg)
+
+        $loader.fadeOut()
         marginTop = ((window.innerHeight / 2) - ($newImg.height() / 2)) - 40
         $newImg.css('margin-top', marginTop + 'px')
-        $newImg.css('display', 'block')
 
         if prevImg
-          prevImg.fadeOut()
-          $newImg.delay(500).fadeIn()
+          prevImg.remove()
+          $newImg.fadeIn()
         else
           $newImg.fadeIn()
+        $timer.width('21px')
+        ran_out_of_time = true
+        $newImg.css('display', 'block')
+        $timer.animate {
+          width: '605px'
+        }, 3000, ->
+          if ran_out_of_time == true
+            window.location.replace($image.attr('data_ran_out_of_time_url'))
       newImg.src = data.src
 
 getClickArea = ($img, e) ->

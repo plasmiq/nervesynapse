@@ -3,6 +3,10 @@ class CompassController < ApplicationController
     session[:user_session_id] = Digest::MD5::hexdigest "#{Time.now.to_s}#{rand}"
   end
 
+  def ran_out_of_time
+    render :text => 'Ran Out Of Time'
+  end
+
   def get_image
     new_image = Compass.get_image params, session
     render :text => {

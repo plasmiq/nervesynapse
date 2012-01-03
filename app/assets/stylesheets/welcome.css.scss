@@ -60,17 +60,17 @@
       margin-left: -26.5px;
       width: 53px;
       padding-top: 54px;
-      background: url(footer_info_btn.png) 0px 0px;
+      background: url(footer_sprite.png) 0px 0px;
       &:hover {
-        background: url(footer_info_btn.png) 53px 0px;
+        background: url(footer_sprite.png) -53px 0px;
       }
     }
     &.open {
       bottom: 0px;
       a.info {
-        background: url(footer_close_btn.png) 0px 0px;
+        background: url(footer_sprite.png) -106px 0px;
         &:hover {
-          background: url(footer_close_btn.png) 53px 0px;
+          background: url(footer_sprite.png) -159px 0px;
         }
       }
     }
