@@ -7,9 +7,9 @@ class CompassController < ApplicationController
   end
 
   def get_image
-    new_image = Compass.get_image params, session
+    response = Compass.get_image params, session
     render :text => {
-      :src => new_image
+      :src => response['url']
     }.to_json
   end
 end
