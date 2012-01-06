@@ -11,15 +11,15 @@
     %th PERSONA
     %th PTS
     %th TIME
-  - 4.times do |i|
+  - Compass.highscore.each_with_index do |score, i|
     %tr
       %td.xp
         %span= i
       %td 1st
-      %td SEEWEER
+      %td= score[0][0..7]
       %td.pts
-        %span.zero_pts 0000
-        %span.dynamic_pts 123
+        %span.zero_pts= ('0' * ( 7 - score[1].to_s.size ))
+        %span.dynamic_pts= score[1]
       %td.time
         %span 01
         %span.colon :

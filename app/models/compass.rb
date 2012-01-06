@@ -8,4 +8,9 @@ class Compass
       :user_session_id => session[:user_session_id]
     )
   end
+
+  def self.highscore
+    resonance_core = ResonanceCore
+    resonance_core.get :highscore
+  end
 end
