@@ -15,13 +15,10 @@ travel = ($img) ->
     $img.unbind 'click'
     ran_out_of_time = false
     $timer.stop()
-    $loader = $('.ajax_loader')
-    $loader.fadeIn()
     getImage($img, e)
 
 getImage = (prevImg, e) ->
   $image = $('#body_compass .image')
-  $loader = $('.ajax_loader')
   $.ajax
     type: 'get'
     url: '/compass/get_image'
@@ -38,7 +35,6 @@ getImage = (prevImg, e) ->
 
         $image.append($newImg)
 
-        $loader.fadeOut()
         marginTop = ((window.innerHeight / 2) - ($newImg.height() / 2)) - 40
         $newImg.css('margin-top', marginTop + 'px')
 
