@@ -1,0 +1,35 @@
+.title
+  .ran_out_of_time
+  .action_area 
+    .tip
+      TIP... YOU ONLY HAVE 3 SECONDS PER IMAGE
+    = link_to 'play again', compass_path, :class => 'button play_again'
+%table
+  %tr.hr
+    %th XP
+    %th RANK
+    %th PERSONA
+    %th PTS
+    %th TIME
+  - 4.times do |i|
+    %tr
+      %td.xp
+        %span= i
+      %td 1st
+      %td SEEWEER
+      %td.pts
+        %span.zero_pts 0000
+        %span.dynamic_pts 123
+      %td.time
+        %span 01
+        %span.colon :
+        %span 23
+        %span.colon :
+        %span 45
+.footer_pts
+  .footer_pts_content
+    %span
+      YOU DON'T HAVE ANTY PTS
+    = link_to 'buy 10 now', '#', :class => 'button buy_10_now'
+    .clear
+

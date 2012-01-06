@@ -1,6 +1,6 @@
 NerveSynapse::Application.routes.draw do
   root :to => 'welcome#index'
-  match 'compass' => 'compass#index'
+  match 'compass' => 'compass#index', :as => 'compass'
   match 'compass/get_image' => 'compass#get_image'
   match 'compass/ran_out_of_time' => 'compass#ran_out_of_time', :as => 'ran_out_of_time'
 

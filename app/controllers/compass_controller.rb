@@ -4,7 +4,6 @@ class CompassController < ApplicationController
   end
 
   def ran_out_of_time
-    render :text => 'Ran Out Of Time'
   end
 
   def get_image

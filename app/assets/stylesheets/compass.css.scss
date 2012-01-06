@@ -19,4 +19,115 @@
     width: 48px;
     margin: 20px auto auto auto;
   }
+  &.body_compass_ran_out_of_time {
+    #timer {
+      display: none;
+    }
+    .title {
+      margin-top: 15px;
+      margin-top: 10px;
+      height: 292px;
+      background: url(game_background_title.jpg) repeat-x;
+      .ran_out_of_time {
+        height: 151px;
+        background: url(game_over_man.png) no-repeat 50% 50%;
+      }
+      .action_area {
+        .tip {
+          margin-top: 22px;
+          font: 21px Montserrat, Arail;
+          text-align: center;
+        }
+        .play_again {
+          padding-top: 47px;
+          background: url(btn_play_again.png) no-repeat;
+          width: 205px;
+          margin: 20px auto 0px auto;
+          &:hover {
+            background: url(btn_play_again.png) no-repeat -205px;
+          }
+        }
+      }
+    }
+    table {
+      width: 780px;
+      margin: auto;
+      margin-bottom: 40px;
+      tr {
+        &.hr {
+          background: url(logo_hr_title.png) repeat-x 0% 100%;
+        }
+        th {
+          font: 24px 'IM Fell DW Pica', serif;
+          color: #326c8a;
+          padding: 18px 0px;
+        }
+        td {
+          height: 50px;
+          text-align: center;
+          vertical-align: middle;
+          color: #a9a9a9;
+          font: 24px Montserrat, Arail;
+          &.time {
+            font-size: 0px;
+            span {
+              font-size: 24px;
+            }
+            span.colon {
+              color: #585858;
+            }
+          }
+          &.pts {
+            font-size: 0px;
+            span.zero_pts {
+              font-size: 24px;
+              color: #585858;
+            }
+            span.dynamic_pts {
+              font-size: 24px;
+              color: #00a99d;
+            }
+          }
+          &.xp {
+            span {
+              color: #000000;
+              display: block;
+              width: 68px;
+              height: 30px;
+              background: url(btn_xp_found_small.png) no-repeat;
+              overflow: hidden;
+              &:hover {
+                background: url(btn_xp_found_small.png) no-repeat -68px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .footer_pts {
+      background: url(footer_background_tile.png);
+      height: 62px;
+      .footer_pts_content {
+        width: 440px;
+        margin: auto;
+        padding-top: 16px;
+        span {
+          color: #a9a9a9;
+          font: 18px Montserrat, Arial;
+          display: block;
+          float: left;
+          margin-top: 5px;
+        }
+        .buy_10_now {
+          float: right;
+          padding-top: 30px;
+          width: 156px;
+          background: url(btn_gameover_buy10now.png) no-repeat;
+          &:hover {
+            background: url(btn_gameover_buy10now.png) no-repeat -156px;
+          }
+        }
+      }
+    }
+  }
 }
