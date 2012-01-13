@@ -1,0 +1,44 @@
+- cycle :even, :odd, :name => :style
+
+.title
+  .score
+    YOUR SCORE IS
+    %span 62
+  .time
+    :plain
+      00<span>m</span>:55<span>s</span>:27<span>ns</span>
+  .action_area
+    .place
+      YOU ARE IN 3rd PLACE
+    .persona_play_again
+      = form_for :persona, :html => { :class => 'enter_persona' } do |form|
+        .text_field_bg
+          = form.text_field :persone
+      = link_to 'play again', compass_path, :class => 'button play_again'
+      .clear
+%table
+  %tr.hr
+    %th RANK
+    %th PERSONA
+    %th PTS
+    %th TIME
+  - Compass.highscore.each_with_index do |score, i|
+    %tr{ :class => "#{get_cycle(:style)} #{('current' if i == 1)}" }
+      %td= number_to_ordinal i + 1
+      %td= score[0][0..7]
+      %td.pts
+        %span.zero_pts= ('0' * ( 7 - score[1].to_s.size ))
+        %span.dynamic_pts= score[1]
+      %td.time
+        %span 01
+        %span.colon :
+        %span 23
+        %span.colon :
+        %span 45
+.footer_pts
+  .footer_pts_content
+    %span
+      YOU DON'T HAVE ANTY PTS
+    = link_to 'buy 10 now', '#', :class => 'button buy_10_now'
+    .clear
+

@@ -6,6 +6,9 @@ class CompassController < ApplicationController
   def ran_out_of_time
   end
 
+  def finish
+  end
+
   def get_image
     response = Compass.get_image params, session
     render :text => {

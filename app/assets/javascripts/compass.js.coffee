@@ -50,7 +50,7 @@ getImage = (prevImg, e) ->
           width: '605px'
         }, 3000, ->
           if ran_out_of_time == true
-            window.location.replace($image.attr('data_ran_out_of_time_url'))
+            window.location.replace($image.attr('data_finish_url'))
       newImg.src = data.src
 
 getClickArea = ($img, e) ->

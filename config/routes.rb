@@ -3,6 +3,7 @@ NerveSynapse::Application.routes.draw do
   match 'compass' => 'compass#index', :as => 'compass'
   match 'compass/get_image' => 'compass#get_image'
   match 'compass/ran_out_of_time' => 'compass#ran_out_of_time', :as => 'ran_out_of_time'
+  match 'compass/finish' => 'compass#finish', :as => 'finish'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
