@@ -93,7 +93,7 @@ getImage = (prevImg, e) ->
         $timer.width('21px')
         ran_out_of_time = true
         $newImg.css('display', 'block')
-        $timer.animate {
+        $timer.delay(1000).animate {
           width: '605px'
         }, 3000, ->
           if ran_out_of_time == true
