@@ -9,10 +9,13 @@
     height: 10px;
   }
   .image {
+    position: relative;
     img {
       display: block;
-      margin: auto;
       cursor: pointer;
+      position: absolute;
+      top: 0px;
+      left: 0px;
     }
   }
   .ajax_loader {
