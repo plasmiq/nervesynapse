@@ -1,7 +1,25 @@
 // Place all the styles related to the compass controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.body_compass_index {
+  #container {
+    cursor: url(transparent_cursor.png), auto;
+    #cursor, .image, img {
+      cursor: url(transparent_cursor.png), auto;
+    }
+  }
+}
 #body_compass {
+  #container {
+    position: relative;
+    #cursor {
+      width: 36px;
+      height: 36px;
+      position: absolute;
+      z-index: 100000;
+      display: block;
+    }
+  }
   #timer {
     width: 21px;
     background-color: #f5002e;
@@ -12,7 +30,6 @@
     position: relative;
     img {
       display: block;
-      cursor: pointer;
       position: absolute;
       top: 0px;
       left: 0px;

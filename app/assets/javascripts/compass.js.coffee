@@ -5,8 +5,85 @@ $timer = ''
 jQuery ->
   $timer = $('#timer')
   $image = $('#body_compass .image')
+  $('#container').height(window.innerHeight - 50)
   if $image.length > 0
+    new Cursor
     getImage(false)
+
+
+
+
+class Cursor
+  constructor: ->
+    @cursor = $('#cursor')
+    @container = $('#container')
+    @headerWidth = 50
+    @mouseX = 0
+    @mouseY = 0
+    @realTimeLoop = ''
+    @trackMouse()
+    @startRealTimeLoop()
+    @bindSubstrateClick()
+
+  startRealTimeLoop: ->
+    _this = @
+    @realTimeLoop = setInterval(
+      ->
+        _this.loopProcess()
+      ,10
+    )
+
+  stopRealTimeLoop: ->
+    clearInterval(@realTimeLoop)
+
+  loopProcess: ->
+    @setCursorPosition()
+
+  trackMouse: ->
+    _this = @
+    @container.bind 'mousemove', (e) ->
+      _this.mouseX = e.clientX
+      _this.mouseY = e.clientY
+
+  setCursorPosition: (e) ->
+    @cursor.css('top', (@mouseY - 50) - 16).css('left', @mouseX - 16)
+
+  clickAnimation: (e) ->
+    _this = @
+    _e = e
+    @container.unbind('mousemove')
+    @stopRealTimeLoop()
+    @cursor.animate {
+      width: '72px',
+      height: '72px'
+      top: ((@mouseY - 50) - 36) + 'px'
+      left: (@mouseX - 36) + 'px'
+    }, {
+      duration: 200,
+      complete: ->
+        _this.cursor.width(36).height(36)
+        _this.trackMouse()
+        _this.startRealTimeLoop()
+    }
+
+  bindSubstrateClick: ->
+    _this = @
+    @cursor.bind 'click', (e) ->
+      $image = $('.image img')
+      $imagePosition = $image.position()
+      $imageLeft = $imagePosition.left
+      $imageRight = $imageLeft + $image.width()
+      $imageTop = $imagePosition.top + _this.headerWidth
+      $imageBottom = $imageTop + $image.height()
+
+      #Check if image was clicked
+      if e.pageX >= $imageLeft and e.pageX <= $imageRight and
+         e.pageY >= $imageTop and e.pageY <= $imageBottom
+        _this.clickAnimation(e)
+        $image.click()
+
+
+
 
 ran_out_of_time = true
 
