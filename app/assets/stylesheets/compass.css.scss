@@ -3,9 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .body_compass_index {
   #container {
-    cursor: url(transparent_cursor.png), auto;
+    cursor: url(cursor_bg.png), auto;
     #cursor, .image, img {
+      cursor: url(cursor_bg.png), auto;
+    }
+  }
+  &.no_cursor {
+    #container {
       cursor: url(transparent_cursor.png), auto;
+      #cursor, .image, img {
+        cursor: url(transparent_cursor.png), auto;
+      }
     }
   }
 }
@@ -18,6 +26,7 @@
       position: absolute;
       z-index: 100000;
       display: block;
+      display: none;
     }
   }
   #timer {

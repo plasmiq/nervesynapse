@@ -7,11 +7,36 @@ jQuery ->
   $image = $('#body_compass .image')
   $('#container').height(window.innerHeight - 50)
   if $image.length > 0
-    new Cursor
+    #new Cursor
     getImage(false)
 
 
+class Cursor2
+  constructor: (e)->
+    @cursor = $('#cursor')
+    @mouseX = e.clientX
+    @mouseY = e.clientY
+    @setCursorPosition()
+    @clickAnimation()
 
+
+  setCursorPosition:  ->
+    @cursor.css('top', @mouseY - 50).css('left', @mouseX).show()
+
+  clickAnimation: ->
+    _this = @
+    $('body').addClass('no_cursor')
+    @cursor.animate {
+      width: '72px',
+      height: '72px'
+      top: ((_this.mouseY - 50) - 16) + 'px'
+      left: (_this.mouseX - 16) + 'px'
+    }, {
+      duration: 200,
+      complete: ->
+        _this.cursor.hide().width(36).height(36).css('top', '0').css('left', '0')
+        $('body').removeClass('no_cursor')
+    }
 
 class Cursor
   constructor: ->
@@ -92,6 +117,7 @@ travel = ($img) ->
     $img.unbind 'click'
     ran_out_of_time = false
     $timer.stop()
+    new Cursor2(e)
     getImage($img, e)
 
 getImage = (prevImg, e) ->
