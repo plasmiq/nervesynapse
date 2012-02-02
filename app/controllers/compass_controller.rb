@@ -7,6 +7,7 @@ class CompassController < ApplicationController
   end
 
   def finish
+    @compass = Compass.highscore(session)
   end
 
   def get_image
