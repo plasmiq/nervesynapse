@@ -7,9 +7,8 @@ jQuery ->
     $timer = $('#timer')
     $image = $('#body_compass .image')
     $('#container').height(window.innerHeight - 50)
-    if $image.length > 0
-      #new Cursor
-      getImage(false)
+    #new Cursor
+    getImage(false)
 
 
 class Cursor2
@@ -137,7 +136,6 @@ getImage = (prevImg, e) ->
         $prevImg = $(prevImg)
 
         #Bind click to new image
-        travel($newImg)
 
         $image.append($newImg)
 
@@ -159,6 +157,7 @@ getImage = (prevImg, e) ->
         $newImg.css('height', start_height)
 
         if prevImg
+          travel($newImg)
           prevImgWidth = $prevImg.width()
           prevImgHeight = $prevImg.height()
           endPrevImgWidth = prevImgWidth * 2
@@ -193,7 +192,8 @@ getImage = (prevImg, e) ->
             height: height + 'px'
             top: end_top + 'px'
             left: end_left + 'px'
-          }, 1000
+          }, 1000, ->
+            travel($newImg)
         $timer.width('21px')
         ran_out_of_time = true
         $newImg.css('display', 'block')
