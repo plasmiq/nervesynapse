@@ -3,12 +3,13 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $timer = ''
 jQuery ->
-  $timer = $('#timer')
-  $image = $('#body_compass .image')
-  $('#container').height(window.innerHeight - 50)
-  if $image.length > 0
-    #new Cursor
-    getImage(false)
+  if($('.body_compass_index').length > 0)
+    $timer = $('#timer')
+    $image = $('#body_compass .image')
+    $('#container').height(window.innerHeight - 50)
+    if $image.length > 0
+      #new Cursor
+      getImage(false)
 
 
 class Cursor2

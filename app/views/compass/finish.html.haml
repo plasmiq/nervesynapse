@@ -9,11 +9,12 @@
     == #{two_number_format hours}<span>h</span>:#{two_number_format minutes}<span>m</span>:#{two_number_format seconds}<span>s</span>
   .action_area
     .place
-      YOU ARE IN 3rd PLACE
+      == YOU ARE IN #{number_to_ordinal @compass['current']['position']} PLACE
     .persona_play_again
-      = form_for :persona, :html => { :class => 'enter_persona' } do |form|
-        .text_field_bg
-          = form.text_field :persone
+      -#
+        = form_for :persona, :html => { :class => 'enter_persona' } do |form|
+          .text_field_bg
+            = form.text_field :persone
       = link_to 'play again', compass_path, :class => 'button play_again'
       .clear
 %table

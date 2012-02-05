@@ -1,7 +1,7 @@
 // Place all the styles related to the compass controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.body_compass_index {
+body.body_compass_index {
   #container {
     cursor: url(cursor_bg.png), auto;
     #cursor, .image, img {
@@ -16,6 +16,10 @@
       }
     }
   }
+}
+
+body.body_compass_finish {
+  overflow: auto;
 }
 #body_compass {
   #container {
@@ -104,7 +108,7 @@
           margin-top: 25px;
         }
         .persona_play_again {
-          width: 500px;
+          width: 210px;
           margin: auto;
           margin-top: 20px;
           form.enter_persona {
