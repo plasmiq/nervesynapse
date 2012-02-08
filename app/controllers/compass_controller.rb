@@ -10,6 +10,13 @@ class CompassController < ApplicationController
     @compass = Compass.highscore(session)
   end
 
+  def get_entry_point
+    response = Compass.get_entry_point session
+    render :text => {
+      :src => response['url']
+    }.to_json
+  end
+
   def get_image
     response = Compass.get_image params, session
     render :text => {
