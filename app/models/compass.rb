@@ -11,12 +11,9 @@ class Compass
 
   def self.highscore(session)
     resonance_core = ResonanceCore
-    a = resonance_core.get(
+    resonance_core.get(
       :highscore,
       :user_session_id => session[:user_session_id]
     )
-    puts "DD" * 100
-    puts a.inspect
-    a
   end
 end
