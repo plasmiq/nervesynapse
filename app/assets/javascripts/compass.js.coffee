@@ -56,6 +56,9 @@ class Travel
     $.ajax
       type: 'get'
       url: '/compass/get_entry_point'
+      data:
+        substrate_id: $('#entry_point_substrate_id').attr('value')
+        weave_id: $('#entry_point_weave_id').attr('value')
       dataType: 'json'
       success: (data) ->
         newImg = new Image()

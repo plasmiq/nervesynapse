@@ -11,7 +11,7 @@ class CompassController < ApplicationController
   end
 
   def get_entry_point
-    response = Compass.get_entry_point session
+    response = Compass.get_entry_point session, {:substrate_id => params[:substrate_id], :weave_id => params[:weave_id]}
     render :text => {
       :src => response['url']
     }.to_json

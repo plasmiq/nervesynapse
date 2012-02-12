@@ -1,2 +1,5 @@
 = image_tag 'cursor_bg.png', :size => '36x36', :id => 'cursor'
+- unless params[:substrate_id].blank? or params[:weave_id].blank?
+  = hidden_field_tag 'entry_point_substrate_id', params[:substrate_id]
+  = hidden_field_tag 'entry_point_weave_id', params[:weave_id]
 .image{ :'data_finish_url' => finish_url }
