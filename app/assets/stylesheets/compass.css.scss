@@ -4,15 +4,38 @@
 body.body_compass_index {
   #container {
     cursor: url(cursor_bg.png), auto;
-    #cursor, .image, img {
+    #cursor, .image, img, .area {
       cursor: url(cursor_bg.png), auto;
     }
   }
+
   &.no_cursor {
     #container {
       cursor: url(transparent_cursor.png), auto;
-      #cursor, .image, img {
+      #cursor, .image, img, .area {
         cursor: url(transparent_cursor.png), auto;
+      }
+    }
+  }
+
+  #click_area {
+    position: absolute;
+    z-index: 10000;
+    .top_border_area {
+      padding: 2px;
+      background: black;
+    }
+    .area {
+      float: left;
+      opacity: 0.5;
+      &.top:hover {
+        background: #247daf;
+      }
+      &.middle:hover {
+        background: #e13f3f;
+      }
+      &.bottom:hover {
+        background: #11a363;
       }
     }
   }

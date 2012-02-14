@@ -37,9 +37,33 @@ class Cursor2
         $('body').removeClass('no_cursor')
     }
 
-class TravleImage
+class TravelElement
   constructor: (element) ->
-    @$image = $(element)
+    @$e           = $(element)
+    @width        = @$e.width()
+    @height       = @$e.height()
+    @start_width  = @width * 0.5
+    @start_height = @height * 0.5
+    @start_top    = ((window.innerHeight / 2) - (@start_height / 2)) - 40
+    @start_left   = (window.innerWidth / 2) - (@start_width / 2)
+    @end_top      = ((window.innerHeight / 2) - (@height / 2)) - 40
+    @end_left     = ((window.innerWidth / 2) - (@width / 2))
+    @setCss()
+
+  setCss: ->
+    @$e.css('z-index', '100')
+    @$e.css('top', @start_top + 'px')
+    @$e.css('left', @start_left + 'px')
+    @$e.css('opacity', '0')
+    @$e.css('width', @start_width)
+    @$e.css('height', @start_height)
+
+  show: ->
+    @$e.show()
+
+  displayBlock: ->
+    @$e.css('display', 'block')
+
 
 class Travel
   constructor: ->
@@ -49,7 +73,26 @@ class Travel
     @$prevImg = ''
     @e = ''
     @ran_out_of_time = true
-  positionAndShowNewImage: ->
+    @$click_area = $('#click_area')
+    @currentImage = ''
+    @clickedArea = ''
+
+    @$click_area.hide()
+
+  prepareClickGrid: ->
+    cssObj = {
+      'top': @currentImage.end_top + 'px',
+      'left': @currentImage.end_left + 'px',
+      'width': @currentImage.width + 'px'
+      'height': @currentImage.height + 'px'
+    }
+    @$click_area.css(cssObj)
+    @$click_area.find('.area').css('width', ((@currentImage.width / 3)) + 'px')
+    @$click_area.find('.area').css('height', ((@currentImage.height / 3)) + 'px')
+
+  showClickGrid: ->
+    @$click_area.fadeIn(200)
+
 
   start: ->
     _this = @
@@ -65,37 +108,27 @@ class Travel
         _this.$newImg = $(newImg)
         _this.$newImg.hide()
         newImg.onload = ->
-          #Bind click to new image
-
           _this.$image.append(_this.$newImg)
+          _this.currentImage = new TravelElement(_this.$newImg)
+          _this.currentImage.show()
+          _this.prepareClickGrid()
 
-          width = _this.$newImg.width()
-          height = _this.$newImg.height()
-          start_width = width * 0.5
-          start_height = height * 0.5
-          start_top = ((window.innerHeight / 2) - (start_height / 2)) - 40
-          start_left = (window.innerWidth / 2) - (start_width / 2)
-          end_top = ((window.innerHeight / 2) - (height / 2)) - 40
-          end_left = ((window.innerWidth / 2) - (width / 2))
-
-          _this.$newImg.css('z-index', '100')
-          _this.$newImg.css('top', start_top + 'px')
-          _this.$newImg.css('left', start_left + 'px')
-          _this.$newImg.css('opacity', '0')
-          _this.$newImg.css('width', start_width)
-          _this.$newImg.css('height', start_height)
-          _this.$newImg.show()
-          _this.$newImg.animate {
+          #START SHOWING IMAGE
+          _this.currentImage.$e.animate {
             opacity: '1'
-            width: width + 'px'
-            height: height + 'px'
-            top: end_top + 'px'
-            left: end_left + 'px'
+            width: _this.currentImage.width + 'px'
+            height: _this.currentImage.height + 'px'
+            top: _this.currentImage.end_top + 'px'
+            left: _this.currentImage.end_left + 'px'
           }, 1000, ->
+            _this.showClickGrid()
             _this.bindClick()
+          #END SHOWING IMAGE
+
+          #RESTET TIMER
           _this.$timer.width('21px')
           _this.ran_out_of_time = true
-          _this.$newImg.css('display', 'block')
+          _this.currentImage.displayBlock()
           _this.$timer.delay(1000).animate {
             width: '605px'
           }, 3000, ->
@@ -108,35 +141,18 @@ class Travel
       type: 'get'
       url: '/compass/get_image'
       data:
-        click_area: _this.getClickArea()
+        click_area: _this.clickedArea
       dataType: 'json'
       success: (data) ->
         newImg = new Image()
         _this.$newImg = $(newImg)
         _this.$newImg.hide()
         newImg.onload = ->
-          #Bind click to new image
-
           _this.$image.append(_this.$newImg)
+          _this.currentImage = new TravelElement(_this.$newImg)
+          _this.currentImage.show()
+          _this.prepareClickGrid()
 
-          width = _this.$newImg.width()
-          height = _this.$newImg.height()
-          start_width = width * 0.5
-          start_height = height * 0.5
-          start_top = ((window.innerHeight / 2) - (start_height / 2)) - 40
-          start_left = (window.innerWidth / 2) - (start_width / 2)
-          end_top = ((window.innerHeight / 2) - (height / 2)) - 40
-          end_left = ((window.innerWidth / 2) - (width / 2))
-
-          _this.$prevImg.css('z-index', '1000')
-          _this.$newImg.css('z-index', '100')
-          _this.$newImg.css('top', start_top + 'px')
-          _this.$newImg.css('left', start_left + 'px')
-          _this.$newImg.css('opacity', '0')
-          _this.$newImg.css('width', start_width)
-          _this.$newImg.css('height', start_height)
-
-          _this.bindClick()
           prevImgWidth = _this.$prevImg.width()
           prevImgHeight = _this.$prevImg.height()
           endPrevImgWidth = prevImgWidth * 2
@@ -154,19 +170,21 @@ class Travel
             opacity: '0'
           }, 1000, ->
             _this.$prevImg.remove()
-            _this.$newImg.css('z-index', '1000')
-          _this.$newImg.delay(100).show()
-          _this.$newImg.delay(200).animate {
+            _this.currentImage.$e.css('z-index', '1000')
+          _this.currentImage.$e.delay(100).show()
+          _this.currentImage.$e.delay(200).animate {
             opacity: '1'
-            width: width + 'px'
-            height: height + 'px'
-            top: end_top + 'px'
-            left: end_left + 'px'
-          }, 1000
+            width: _this.currentImage.width + 'px'
+            height: _this.currentImage.height + 'px'
+            top: _this.currentImage.end_top + 'px'
+            left: _this.currentImage.end_left + 'px'
+          }, 1000, ->
+            _this.showClickGrid()
+            _this.bindClick()
 
           _this.$timer.width('21px')
           _this.ran_out_of_time = true
-          _this.$newImg.css('display', 'block')
+          _this.currentImage.$e.css('display', 'block')
           _this.$timer.delay(1000).animate {
             width: '605px'
           }, 3000, ->
@@ -176,8 +194,10 @@ class Travel
 
   bindClick: ->
     _this = @
-    @$newImg.bind 'click', (e) ->
-      _this.$newImg.unbind 'click'
+    @$click_area.find('.area').bind 'click', (e) ->
+      _this.$click_area.hide()
+      _this.clickedArea = $(@).data('id')
+      _this.$click_area.find('.area').unbind 'click'
       _this.ran_out_of_time = false
       _this.$timer.stop()
       new Cursor2(e)
@@ -185,12 +205,3 @@ class Travel
       _this.e = e
       _this.$prevImg = _this.$newImg
       _this.nextStep()
-
-  getClickArea: ->
-    w = @$prevImg.width()
-    h = @$prevImg.height()
-    x = @e.pageX - @$prevImg.offset().left
-    y = @e.pageY - @$prevImg.offset().top
-    col = parseInt(x / (w / 3)) + 1
-    row = parseInt(y / (h / 3))
-    return col + (row * 3)
