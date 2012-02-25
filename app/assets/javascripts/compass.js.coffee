@@ -10,33 +10,6 @@ jQuery ->
     t.start()
 
 
-class Cursor2
-  constructor: (e)->
-    @cursor = $('#cursor')
-    @mouseX = e.clientX
-    @mouseY = e.clientY
-    @setCursorPosition()
-    @clickAnimation()
-
-
-  setCursorPosition:  ->
-    @cursor.css('top', @mouseY - 50).css('left', @mouseX).show()
-
-  clickAnimation: ->
-    _this = @
-    $('body').addClass('no_cursor')
-    @cursor.animate {
-      width: '72px',
-      height: '72px'
-      top: ((_this.mouseY - 50) - 16) + 'px'
-      left: (_this.mouseX - 16) + 'px'
-    }, {
-      duration: 200,
-      complete: ->
-        _this.cursor.hide().width(36).height(36).css('top', '0').css('left', '0')
-        $('body').removeClass('no_cursor')
-    }
-
 class TravelElement
   constructor: (element) ->
     @$e           = $(element)
@@ -200,7 +173,6 @@ class Travel
       _this.$click_area.find('.area').unbind 'click'
       _this.ran_out_of_time = false
       _this.$timer.stop()
-      new Cursor2(e)
       #getImage($img, e)
       _this.e = e
       _this.$prevImg = _this.$newImg

@@ -2,22 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body.body_compass_index {
-  #container {
-    cursor: url(cursor_bg.png), auto;
-    #cursor, .image, img, .area {
-      cursor: url(cursor_bg.png), auto;
-    }
-  }
-
-  &.no_cursor {
-    #container {
-      cursor: url(transparent_cursor.png), auto;
-      #cursor, .image, img, .area {
-        cursor: url(transparent_cursor.png), auto;
-      }
-    }
-  }
-
   #click_area {
     position: absolute;
     z-index: 10000;
