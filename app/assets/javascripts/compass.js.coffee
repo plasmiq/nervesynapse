@@ -60,8 +60,26 @@ class Travel
       'height': @currentImage.height + 'px'
     }
     @$click_area.css(cssObj)
-    @$click_area.find('.area').css('width', ((@currentImage.width / 3)) + 'px')
-    @$click_area.find('.area').css('height', ((@currentImage.height / 3)) + 'px')
+
+    _width = parseInt((@currentImage.width - 4) / 3)
+    _height = parseInt((@currentImage.height - 4) / 3)
+
+    _width_diff = @currentImage.width - ((_width * 3) + 4)
+    _height_diff = @currentImage.height - ((_height * 3) + 4)
+
+    @$click_area.find('.area').css('width', _width + 'px')
+    @$click_area.find('.area.top:last, .area.middle:last, .area.bottom:last').css('width', (_width + _width_diff) + 'px')
+
+    @$click_area.find('.area').css('height', _height + 'px')
+    @$click_area.find('.area.bottom').css('height', (_height + _height_diff) + 'px')
+
+    @$click_area.find('.area .bg').css('width', _width + 'px')
+    @$click_area.find('.area.top:last, .area.middle:last, .area.bottom:last').find('.bg').css('width', (_width + _width_diff) + 'px')
+
+    @$click_area.find('.area .bg').css('height', _height + 'px')
+    @$click_area.find('.area.bottom .bg').css('height', (_height + _height_diff) + 'px')
+
+    $('.area').mouseover()
 
   showClickGrid: ->
     @$click_area.fadeIn(200)
@@ -104,7 +122,7 @@ class Travel
           _this.currentImage.displayBlock()
           _this.$timer.delay(1000).animate {
             width: '605px'
-          }, 3000, ->
+          }, 300000000, ->
             if _this.ran_out_of_time == true
               window.location.replace(_this.$image.attr('data_finish_url'))
         newImg.src = data.src

@@ -5,21 +5,28 @@ body.body_compass_index {
   #click_area {
     position: absolute;
     z-index: 10000;
-    .top_border_area {
-      padding: 2px;
-      background: black;
-    }
     .area {
       float: left;
-      opacity: 0.5;
+      .bg {
+        opacity: 0.5;
+      }
       &.top:hover {
-        background: #247daf;
+        border: 2px solid #247daf;
+        .bg {
+          background: #247daf;
+        }
       }
       &.middle:hover {
-        background: #e13f3f;
+        border: 2px solid #e13f3f;
+        .bg {
+          background: #e13f3f;
+        }
       }
       &.bottom:hover {
-        background: #11a363;
+        border: 2px solid  #11a363;
+        .bg {
+          background: #11a363;
+        }
       }
     }
   }
