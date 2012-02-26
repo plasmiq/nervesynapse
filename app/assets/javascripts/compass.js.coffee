@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   if($('.body_compass_index').length > 0)
+    $('body').mousemove (e) ->
+      $('body').attr('data-x', e.pageX)
+      $('body').attr('data-y', e.pageY)
     $image = $('#body_compass .image')
     $('#container').height(window.innerHeight - 50)
     #getImage(false)
@@ -79,10 +82,22 @@ class Travel
     @$click_area.find('.area .bg').css('height', _height + 'px')
     @$click_area.find('.area.bottom .bg').css('height', (_height + _height_diff) + 'px')
 
-    $('.area').mouseover()
+    $('.area').mouseover (e) ->
+      left_1 = $(@).offset().left
+      top_1 = $(@).offset().top
+      left_2 = $(@).width() + left_1
+      top_2 = $(@).height() + top_1
+      cursorX = e.pageX or $('body').attr('data-x')
+      cursorY = e.pageY or $('body').attr('data-y')
+      if(cursorX >= left_1 and cursorX <= left_2 and cursorY >= top_1 and cursorY <= top_2)
+        $(@).addClass('selected')
+
+    $('.area').mouseout ->
+      $(@).removeClass('selected')
 
   showClickGrid: ->
-    @$click_area.fadeIn(200)
+    @$click_area.show()
+    $('.area').trigger('mouseover')
 
 
   start: ->
@@ -120,9 +135,9 @@ class Travel
           _this.$timer.width('21px')
           _this.ran_out_of_time = true
           _this.currentImage.displayBlock()
-          _this.$timer.delay(1000).animate {
+          _this.$timer.delay(1500).animate {
             width: '605px'
-          }, 300000000, ->
+          }, 3000, ->
             if _this.ran_out_of_time == true
               window.location.replace(_this.$image.attr('data_finish_url'))
         newImg.src = data.src
@@ -176,7 +191,7 @@ class Travel
           _this.$timer.width('21px')
           _this.ran_out_of_time = true
           _this.currentImage.$e.css('display', 'block')
-          _this.$timer.delay(1000).animate {
+          _this.$timer.delay(1500).animate {
             width: '605px'
           }, 3000, ->
             if _this.ran_out_of_time == true

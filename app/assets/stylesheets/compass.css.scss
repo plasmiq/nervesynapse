@@ -10,19 +10,19 @@ body.body_compass_index {
       .bg {
         opacity: 0.5;
       }
-      &.top:hover {
+      &.top.selected {
         border: 2px solid #247daf;
         .bg {
           background: #247daf;
         }
       }
-      &.middle:hover {
+      &.middle.selected {
         border: 2px solid #e13f3f;
         .bg {
           background: #e13f3f;
         }
       }
-      &.bottom:hover {
+      &.bottom.selected {
         border: 2px solid  #11a363;
         .bg {
           background: #11a363;
