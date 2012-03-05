@@ -1,0 +1,8 @@
+development: &default
+  metabrane_url: 'http://beta.metabrane.co'
+
+test:
+  <<: *default
+
+production:
+  <<: *default

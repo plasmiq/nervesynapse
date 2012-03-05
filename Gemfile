@@ -7,7 +7,7 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'ruby-debug'
 gem 'haml'
-gem 'mysql'
+gem 'therubyracer'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
@@ -16,7 +16,12 @@ group :assets do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'mongrel'
+end
+
+group :production do
+  gem 'mysql'
 end
 
 group :test do
